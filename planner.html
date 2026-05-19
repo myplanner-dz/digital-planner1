@@ -1453,6 +1453,104 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--tx);min-h
   }
 
 })();
+
+// ===== AUTO SAVE =====
+(function() {
+  var SAVE_KEY = 'digitalPlanner_data';
+
+  function getAllInputs() {
+    return document.querySelectorAll('input.wi, textarea.wi');
+  }
+
+  function saveAll() {
+    var data = {};
+    var inputs = getAllInputs();
+    inputs.forEach(function(inp, i) {
+      var key = inp.getAttribute('data-sid') || 'inp_' + i;
+      data[key] = inp.value;
+    });
+    // save checkboxes
+    document.querySelectorAll('.cb').forEach(function(cb) {
+      if (cb.id) data['cb_' + cb.id] = cb.classList.contains('ck');
+    });
+    // save water drops
+    document.querySelectorAll('.wd').forEach(function(wd, i) {
+      data['wd_' + i] = wd.classList.contains('fl');
+    });
+    // save mood
+    document.querySelectorAll('.mf').forEach(function(mf, i) {
+      data['mf_' + i] = mf.classList.contains('on');
+    });
+    try { localStorage.setItem(SAVE_KEY, JSON.stringify(data)); } catch(e) {}
+  }
+
+  function loadAll() {
+    var raw;
+    try { raw = localStorage.getItem(SAVE_KEY); } catch(e) {}
+    if (!raw) return;
+    var data;
+    try { data = JSON.parse(raw); } catch(e) { return; }
+
+    var inputs = getAllInputs();
+    inputs.forEach(function(inp, i) {
+      var key = inp.getAttribute('data-sid') || 'inp_' + i;
+      if (data[key] !== undefined) inp.value = data[key];
+    });
+    document.querySelectorAll('.cb').forEach(function(cb) {
+      if (cb.id && data['cb_' + cb.id]) cb.classList.add('ck');
+    });
+    document.querySelectorAll('.wd').forEach(function(wd, i) {
+      if (data['wd_' + i]) wd.classList.add('fl');
+    });
+    document.querySelectorAll('.mf').forEach(function(mf, i) {
+      if (data['mf_' + i]) mf.classList.add('on');
+    });
+  }
+
+  // assign stable IDs to inputs
+  function assignIDs() {
+    var inputs = getAllInputs();
+    inputs.forEach(function(inp, i) {
+      if (!inp.getAttribute('data-sid')) inp.setAttribute('data-sid', 'inp_' + i);
+    });
+  }
+
+  // listen for changes
+  function attachListeners() {
+    document.addEventListener('input', function(e) {
+      if (e.target.classList.contains('wi')) saveAll();
+    });
+    document.addEventListener('click', function(e) {
+      if (e.target.classList.contains('cb') || e.target.classList.contains('wd') || e.target.classList.contains('mf')) {
+        setTimeout(saveAll, 50);
+      }
+    });
+  }
+
+  // init after page loads
+  window.addEventListener('load', function() {
+    setTimeout(function() {
+      assignIDs();
+      loadAll();
+      attachListeners();
+      // show save indicator
+      var ind = document.createElement('div');
+      ind.id = 'saveInd';
+      ind.style.cssText = 'position:fixed;bottom:16px;right:16px;background:#4a6e4a;color:#fff;font-size:.72rem;padding:6px 12px;border-radius:20px;opacity:0;transition:opacity .3s;z-index:9999;';
+      ind.textContent = '✓ Saved';
+      document.body.appendChild(ind);
+
+      document.addEventListener('input', function(e) {
+        if (e.target.classList.contains('wi')) {
+          var ind = document.getElementById('saveInd');
+          ind.style.opacity = '1';
+          clearTimeout(ind._t);
+          ind._t = setTimeout(function() { ind.style.opacity = '0'; }, 1500);
+        }
+      });
+    }, 500);
+  });
+})();
 </script>
 </body>
 </html>
