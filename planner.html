@@ -1,0 +1,1458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Digital Planner 2025-2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f5f0ea;--sur:#fdfaf6;--sur2:#f0ebe3;--acc:#b8a48a;--acc2:#8a6f5a;--tx:#2c2420;--tx2:#6b5a4e;--tx3:#9d8880;--bd:#ddd5c8;--bd2:#c8bdb0;--gold:#c9a96e;--tp:#b8a48a;--tl:#f0ebe3;--td:#8a6f5a;}
+.tr{--tp:#c4a0a0;--tl:#f5eaea;--td:#8c5555;--acc:#c4a0a0;--acc2:#8c5555;}
+.ts{--tp:#8fad90;--tl:#e8f0e8;--td:#4a6e4a;--acc:#8fad90;--acc2:#4a6e4a;}
+.tk{--tp:#90a8c4;--tl:#e8eef5;--td:#3a5a7c;--acc:#90a8c4;--acc2:#3a5a7c;}
+.tv{--tp:#a8a0c4;--tl:#eeeaf5;--td:#5a508c;--acc:#a8a0c4;--acc2:#5a508c;}
+.tpe{--tp:#c4a890;--tl:#f5ede8;--td:#8c5a3a;--acc:#c4a890;--acc2:#8c5a3a;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--tx);min-height:100vh;}
+.hdr{background:var(--sur);border-bottom:1px solid var(--bd);padding:0 1.5rem;display:flex;align-items:stretch;justify-content:space-between;position:sticky;top:0;z-index:100;}
+.logo{font-family:'Playfair Display',serif;font-size:1.1rem;padding:.7rem 0;display:flex;align-items:center;gap:.4rem;}
+.logo em{color:var(--acc2);font-style:italic;}
+.navtabs{display:flex;align-items:stretch;}
+.nt{padding:0 1rem;cursor:pointer;font-size:.75rem;font-weight:500;letter-spacing:.04em;color:var(--tx3);border:none;background:none;border-bottom:2px solid transparent;transition:all .2s;text-transform:uppercase;}
+.nt:hover{color:var(--tx2);background:var(--sur2);}
+.nt.on{color:var(--acc2);border-bottom:2px solid var(--acc2);background:var(--tl);}
+.tbar{display:flex;align-items:center;gap:5px;padding:0 .8rem;}
+.tdot{width:17px;height:17px;border-radius:50%;cursor:pointer;border:2px solid transparent;transition:all .2s;}
+.tdot.on{border-color:var(--tx2);transform:scale(1.2);}
+.main{padding:1.2rem;max-width:1100px;margin:0 auto;}
+.pg{display:none;}.pg.on{display:block;}
+.pw{display:flex;background:var(--sur);border:1px solid var(--bd);border-radius:12px;overflow:hidden;box-shadow:2px 4px 20px rgba(0,0,0,.06);}
+.sp{width:24px;background:var(--sur2);border-left:1px solid var(--bd);border-right:1px solid var(--bd);display:flex;flex-direction:column;align-items:center;justify-content:space-evenly;padding:6px 0;flex-shrink:0;}
+.sr{width:13px;height:13px;border-radius:50%;border:2px solid var(--gold);}
+.pl{flex:1;padding:1.2rem;border-right:1px solid var(--bd);}
+.pr2{flex:1;padding:1.2rem;}
+.lbl{font-size:.63rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--tp);border-bottom:1px solid var(--tl);padding-bottom:3px;margin-bottom:.45rem;}
+.wl{border-bottom:1px solid var(--bd);min-height:26px;position:relative;}
+.wl.tm{padding-left:26px;}
+.tt{font-size:.62rem;color:var(--tx3);position:absolute;left:0;top:50%;transform:translateY(-50%);}
+.wi{border:none;background:transparent;width:100%;font-family:'DM Sans',sans-serif;font-size:.8rem;color:var(--tx);outline:none;padding:4px 0;}
+.wi::placeholder{color:var(--tx3);opacity:.55;}
+.cr{display:flex;align-items:flex-start;gap:7px;padding:5px 0;border-bottom:1px solid var(--bd);}
+.cb{width:14px;height:14px;border:1.5px solid var(--bd2);border-radius:3px;cursor:pointer;flex-shrink:0;margin-top:2px;background:var(--sur);transition:all .2s;display:flex;align-items:center;justify-content:center;}
+.cb.ck{background:var(--acc);border-color:var(--acc);}
+.cb.ck::after{content:'OK';font-size:7px;color:#fff;}
+.pr-row{display:flex;align-items:flex-start;gap:7px;padding:5px 0;border-bottom:1px solid var(--bd);}
+.pn{width:17px;height:17px;border-radius:50%;background:var(--tl);border:1px solid var(--tp);font-size:.68rem;font-weight:600;color:var(--td);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;}
+.mb{width:26px;height:26px;border-radius:50%;border:1.5px solid var(--bd);background:var(--sur2);cursor:pointer;font-size:13px;display:flex;align-items:center;justify-content:center;transition:all .2s;}
+.mb:hover,.mb.on{border-color:var(--acc);background:var(--tl);}
+.wd{width:20px;height:20px;border-radius:50% 50% 50% 50% / 60% 60% 40% 40%;border:1.5px solid var(--acc);background:transparent;cursor:pointer;transition:all .2s;}
+.wd.fl{background:var(--acc);}
+.hb-row{display:flex;align-items:center;gap:5px;padding:4px 0;border-bottom:1px solid var(--bd);}
+.hb-nm{flex:1;font-size:.76rem;color:var(--tx2);}
+.hb-bx{width:15px;height:15px;border:1.5px solid var(--bd2);border-radius:2px;cursor:pointer;background:transparent;transition:all .15s;}
+.hb-bx.dn{background:var(--acc);border-color:var(--acc);}
+.star{font-size:13px;cursor:pointer;color:var(--bd2);}
+.star.lit{color:var(--gold);}
+.stabs{display:flex;gap:5px;margin-bottom:.8rem;border-bottom:1px solid var(--bd);padding-bottom:.4rem;flex-wrap:wrap;}
+.stab{padding:3px 11px;font-size:.7rem;font-weight:500;color:var(--tx3);border-radius:20px;cursor:pointer;border:1px solid transparent;transition:all .2s;text-transform:uppercase;}
+.stab:hover{color:var(--tx2);background:var(--sur2);}
+.stab.on{background:var(--acc2);color:#fff;}
+.stat-r{display:flex;gap:8px;margin-bottom:1rem;}
+.stat-c{background:var(--tl);border-radius:8px;padding:9px 12px;flex:1;border:1px solid var(--bd);}
+.cg{display:grid;grid-template-columns:repeat(7,1fr);gap:1px;background:var(--bd);border:1px solid var(--bd);border-radius:6px;overflow:hidden;}
+.cdh{background:var(--tl);padding:5px 3px;text-align:center;font-size:.63rem;font-weight:600;letter-spacing:.05em;color:var(--td);text-transform:uppercase;}
+.cd{background:var(--sur);padding:5px;min-height:58px;cursor:pointer;}
+.cd:hover{background:var(--tl);}
+.cd.tod{outline:2px solid var(--acc);}
+.cd.oth{opacity:.35;}
+.cdn{font-size:.78rem;font-weight:500;color:var(--tx2);}
+.cd.tod .cdn{width:20px;height:20px;background:var(--acc2);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.72rem;}
+.wg{display:grid;border:1px solid var(--bd);border-radius:8px;overflow:hidden;}
+.wgh{background:var(--tl);padding:7px 3px;text-align:center;border-bottom:1px solid var(--bd);border-right:1px solid var(--bd);}
+.wgt{background:var(--sur2);padding:3px 5px;text-align:right;border-right:1px solid var(--bd);border-bottom:1px solid var(--bd);font-size:.58rem;color:var(--tx3);}
+.wgc{border-right:1px solid var(--bd);border-bottom:1px solid var(--bd);min-height:26px;padding:2px;cursor:text;outline:none;font-size:.74rem;color:var(--tx2);}
+.wgc:hover{background:var(--tl);}
+.tgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:.8rem;}
+.tc{background:var(--sur);border:1px solid var(--bd);border-radius:8px;padding:.85rem;cursor:pointer;transition:all .2s;}
+.tc:hover{border-color:var(--acc);box-shadow:0 2px 12px rgba(0,0,0,.08);transform:translateY(-2px);}
+.sgrid{display:grid;grid-template-columns:repeat(9,1fr);gap:5px;margin-top:.8rem;}
+.stk{font-size:1.4rem;text-align:center;cursor:pointer;padding:7px;border-radius:7px;border:1px solid transparent;transition:all .2s;}
+.stk:hover{border-color:var(--bd);background:var(--tl);transform:scale(1.12);}
+.bt{width:100%;border-collapse:collapse;font-size:.75rem;}
+.bt th{background:var(--tl);padding:6px 7px;text-align:left;font-size:.63rem;text-transform:uppercase;letter-spacing:.05em;color:var(--td);font-weight:500;border:1px solid var(--bd);}
+.bt td{padding:0;border:1px solid var(--bd);}
+.bt td input{padding:5px 7px;}
+.pb-wrap{background:var(--bd);border-radius:3px;height:5px;overflow:hidden;margin-top:3px;}
+.pb-fill{height:100%;background:var(--acc);border-radius:3px;transition:width .3s;}
+.afm{background:var(--tl);border:1px solid var(--bd);border-radius:8px;padding:.7rem;text-align:center;font-family:'Playfair Display',serif;font-style:italic;font-size:.8rem;color:var(--tx2);cursor:pointer;transition:all .2s;}
+.afm:hover{border-color:var(--acc);}
+.modal{position:fixed;inset:0;background:rgba(44,36,32,.5);z-index:999;display:none;align-items:center;justify-content:center;padding:1rem;}
+.modal.open{display:flex;}
+.mbox{background:var(--sur);border-radius:14px;width:100%;max-width:940px;max-height:90vh;display:flex;flex-direction:column;box-shadow:0 16px 60px rgba(0,0,0,.2);animation:mIn .2s ease;}
+@keyframes mIn{from{opacity:0;transform:scale(.95)}to{opacity:1;transform:scale(1)}}
+.mhdr{display:flex;align-items:center;justify-content:space-between;padding:1rem 1.4rem;border-bottom:1px solid var(--bd);flex-shrink:0;}
+.mtitle{font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--tx);}
+.mbody{padding:1.2rem 1.4rem;overflow-y:auto;flex:1;}
+.mbody::-webkit-scrollbar{width:4px;}
+.mbody::-webkit-scrollbar-thumb{background:var(--bd2);border-radius:2px;}
+.mcls{width:30px;height:30px;border-radius:50%;border:1px solid var(--bd);background:var(--sur2);cursor:pointer;font-size:.95rem;display:flex;align-items:center;justify-content:center;color:var(--tx2);}
+.mcls:hover{background:var(--tl);border-color:var(--acc);}
+.mt{width:100%;border-collapse:collapse;font-size:.76rem;}
+.mt th{background:var(--tl);padding:7px 8px;border:1px solid var(--bd);font-size:.63rem;text-transform:uppercase;letter-spacing:.05em;color:var(--td);}
+.mt td{border:1px solid var(--bd);padding:0;}
+.mt td input{padding:5px 8px;}
+.toast{position:fixed;bottom:22px;right:22px;background:var(--acc2);color:#fff;padding:9px 16px;border-radius:8px;font-size:.78rem;opacity:0;transform:translateY(8px);transition:all .3s;z-index:9999;pointer-events:none;}
+.toast.show{opacity:1;transform:translateY(0);}
+.igrid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;}
+.is{background:var(--sur);border:1px solid var(--bd);border-radius:8px;padding:.9rem;}
+.ist{font-size:.63rem;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--acc2);background:var(--tl);padding:3px 7px;border-radius:4px;margin-bottom:7px;text-align:center;}
+.il{display:block;padding:3px 7px;font-size:.73rem;color:var(--tx2);cursor:pointer;border-radius:4px;transition:all .15s;}
+.il:hover{background:var(--tl);color:var(--acc2);}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:.8rem;}
+
+/* ===== DARK MODE ===== */
+.dark{
+  --bg:#1a1614;--sur:#242018;--sur2:#2e2820;
+  --acc:#c9a96e;--acc2:#d4b896;
+  --tx:#f0e8e0;--tx2:#c8b8a8;--tx3:#8a7a6a;
+  --bd:#3a3028;--bd2:#4a3c30;
+  --gold:#c9a96e;--tp:#c9a96e;--tl:#2e2820;--td:#d4b896;
+}
+.dark .hdr{box-shadow:0 2px 12px rgba(0,0,0,.4);}
+.dark .tc{background:var(--sur);}
+.dark .wi{color:var(--tx);}
+.dark input,
+.dark textarea,
+.dark select{background:transparent;color:var(--tx);}
+.dark .wgc{color:var(--tx);}
+
+/* ===== DARK MODE TOGGLE BTN ===== */
+.dmBtn{
+  width:32px;height:32px;border-radius:50%;border:1px solid var(--bd);
+  background:var(--sur2);cursor:pointer;font-size:1rem;
+  display:flex;align-items:center;justify-content:center;
+  margin:auto 0;transition:all .2s;flex-shrink:0;
+}
+.dmBtn:hover{background:var(--tl);border-color:var(--acc);}
+
+/* ===== MOBILE ===== */
+@media(max-width:700px){
+  /* Header */
+  .hdr{
+    flex-wrap:wrap;padding:0 .7rem;
+    position:sticky;top:0;z-index:200;
+  }
+  .logo{font-size:.9rem;padding:.5rem 0;}
+  .tbar{padding:.4rem 0;gap:4px;order:3;width:100%;
+    justify-content:center;border-top:1px solid var(--bd);padding:.5rem 0;}
+  .navtabs{
+    order:2;width:100%;overflow-x:auto;
+    -webkit-overflow-scrolling:touch;
+    scrollbar-width:none;gap:0;
+    border-top:1px solid var(--bd);
+  }
+  .navtabs::-webkit-scrollbar{display:none;}
+  .nt{
+    font-size:.65rem;padding:0 .7rem;
+    white-space:nowrap;min-height:36px;flex-shrink:0;
+  }
+
+  /* Main */
+  .main{padding:.7rem;}
+
+  /* Stat row */
+  .stat-r{flex-wrap:wrap;gap:5px;}
+  .stat-c{min-width:calc(33% - 4px);flex:1;}
+
+  /* Index grid */
+  .igrid{grid-template-columns:1fr;}
+
+  /* Planner wrap — stack vertically */
+  .pw{flex-direction:column;}
+  .sp{
+    width:100%;height:22px;flex-direction:row;
+    border-left:none;border-right:none;
+    border-top:1px solid var(--bd);border-bottom:1px solid var(--bd);
+    padding:0 6px;justify-content:space-around;
+  }
+  .sr{width:12px;height:12px;}
+  .pl{border-right:none;border-bottom:1px solid var(--bd);padding:.9rem;}
+  .pr2{padding:.9rem;}
+
+  /* Inputs bigger on mobile */
+  .wi{font-size:.9rem;padding:6px 0;}
+  .wl{min-height:34px;}
+  .cb{width:20px;height:20px;}
+  .cb.ck::after{font-size:10px;}
+  .mb{width:34px;height:34px;font-size:16px;}
+  .wd{width:26px;height:26px;}
+  .hb-bx{width:20px;height:20px;}
+
+  /* Template grid */
+  .tgrid{grid-template-columns:1fr 1fr;gap:8px;}
+  .tc{padding:.7rem;}
+
+  /* Sticker grid */
+  .sgrid{grid-template-columns:repeat(6,1fr);}
+  .stk{font-size:1.2rem;padding:5px;}
+
+  /* g2 grid */
+  .g2{grid-template-columns:1fr;}
+
+  /* Weekly grid scroll */
+  .wg{overflow-x:auto;-webkit-overflow-scrolling:touch;}
+  #wGrid{min-width:600px;}
+
+  /* Budget table scroll */
+  .bt-wrap{overflow-x:auto;}
+  .bt{min-width:500px;}
+
+  /* Modal */
+  .mbox{
+    max-width:100%;max-height:95vh;
+    border-radius:12px 12px 0 0;
+    position:fixed;bottom:0;left:0;right:0;
+    margin:0;
+  }
+  .modal{align-items:flex-end;padding:0;}
+
+  /* Month view tabs */
+  #pg-monthly .stabs{overflow-x:auto;flex-wrap:nowrap;}
+
+  /* Note types grid */
+  #nTypes{grid-template-columns:repeat(5,1fr);}
+}
+
+@media(max-width:400px){
+  .tgrid{grid-template-columns:1fr;}
+  .sgrid{grid-template-columns:repeat(5,1fr);}
+  .stat-c{min-width:calc(50% - 4px);}
+}
+</style>
+</head>
+<body>
+<div class="toast" id="toast"></div>
+
+<!-- MODAL -->
+<div class="modal" id="modal">
+  <div class="mbox">
+    <div class="mhdr">
+      <div class="mtitle" id="mTitle"></div>
+      <div style="display:flex;gap:8px;align-items:center;">
+        <button onclick="window.print()" style="font-size:.7rem;padding:4px 11px;border:1px solid var(--bd);border-radius:5px;background:var(--sur2);cursor:pointer;color:var(--tx2);">Print</button>
+        <div class="mcls" id="mClsBtn">X</div>
+      </div>
+    </div>
+    <div class="mbody" id="mBody"></div>
+  </div>
+</div>
+
+<!-- HEADER -->
+<div class="hdr">
+  <div class="logo">&#10022; <em>My</em> Digital Planner <span style="font-size:.62rem;color:var(--tx3);font-family:'DM Sans',sans-serif;font-style:normal;margin-left:4px;">2025-2026</span></div>
+  <div class="navtabs" id="navtabs">
+    <button class="nt on" data-p="index">Index</button>
+    <button class="nt" data-p="daily">Daily</button>
+    <button class="nt" data-p="weekly">Weekly</button>
+    <button class="nt" data-p="monthly">Monthly</button>
+    <button class="nt" data-p="notes">Notes</button>
+    <button class="nt" data-p="templates">Templates</button>
+    <button class="nt" data-p="stickers">Stickers</button>
+  </div>
+  <div class="tbar">
+    <span style="font-size:.62rem;color:var(--tx3);">Theme</span>
+    <div class="tdot on" style="background:#b8a48a" data-t=""></div>
+    <div class="tdot" style="background:#c4a0a0" data-t="tr"></div>
+    <div class="tdot" style="background:#8fad90" data-t="ts"></div>
+    <div class="tdot" style="background:#90a8c4" data-t="tk"></div>
+    <div class="tdot" style="background:#a8a0c4" data-t="tv"></div>
+    <div class="tdot" style="background:#c4a890" data-t="tpe"></div>
+    <div class="dmBtn" id="dmBtn" title="Dark Mode">🌙</div>
+  </div>
+</div>
+
+<div class="main">
+
+<!-- INDEX -->
+<div class="pg on" id="pg-index">
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;">
+    <div><h1 style="font-family:'Playfair Display',serif;font-size:1.5rem;">Index</h1><p style="font-size:.75rem;color:var(--tx3);">Your complete planner hub</p></div>
+    <div style="font-size:.72rem;color:var(--tx3);">721 pages &middot; 80+ templates &middot; 1600+ stickers</div>
+  </div>
+  <div class="stat-r">
+    <div class="stat-c"><div style="font-size:.63rem;color:var(--tx3);">Pages</div><div style="font-size:1.3rem;font-weight:500;color:var(--td);font-family:'Playfair Display',serif;">721</div></div>
+    <div class="stat-c"><div style="font-size:.63rem;color:var(--tx3);">Templates</div><div style="font-size:1.3rem;font-weight:500;color:var(--td);font-family:'Playfair Display',serif;">80+</div></div>
+    <div class="stat-c"><div style="font-size:.63rem;color:var(--tx3);">Stickers</div><div style="font-size:1.3rem;font-weight:500;color:var(--td);font-family:'Playfair Display',serif;">1600+</div></div>
+    <div class="stat-c"><div style="font-size:.63rem;color:var(--tx3);">Covers</div><div style="font-size:1.3rem;font-weight:500;color:var(--td);font-family:'Playfair Display',serif;">50+</div></div>
+    <div class="stat-c"><div style="font-size:.63rem;color:var(--tx3);">Themes</div><div style="font-size:1.3rem;font-weight:500;color:var(--td);font-family:'Playfair Display',serif;">6</div></div>
+  </div>
+  <div class="igrid">
+    <div class="is"><div class="ist">Monthly Planner</div>
+      <span class="il" id="idx-monthly">Jan - Feb - Mar - Apr</span>
+      <span class="il" id="idx-monthly2">May - Jun - Jul - Aug</span>
+      <span class="il" id="idx-monthly3">Sep - Oct - Nov - Dec</span>
+      <div class="ist" style="margin-top:8px;">Monthly Budget</div>
+      <span class="il" id="idx-budget">All 12 months</span>
+    </div>
+    <div class="is"><div class="ist">Yearly Pages</div>
+      <span class="il">Calendar Overview</span><span class="il">Key Dates</span>
+      <span class="il">Year At A Glance</span><span class="il">Vision Board</span>
+      <span class="il">Yearly Goal Setting</span><span class="il">Yearly Reflection</span>
+      <span class="il">Quarter 1-4 Overview</span>
+    </div>
+    <div class="is"><div class="ist">Lifestyle</div>
+      <span class="il" id="idx-wishlist">My Wishlist</span>
+      <span class="il" id="idx-books">Book Log</span>
+      <span class="il" id="idx-movies">Movie Log</span>
+      <span class="il" id="idx-birthdays">Birthdays</span>
+      <span class="il" id="idx-trip">Trip Planner</span>
+      <span class="il" id="idx-cleaning">Cleaning Log</span>
+      <span class="il" id="idx-packing">Packing Checklist</span>
+    </div>
+    <div class="is"><div class="ist">Wellness</div>
+      <span class="il" id="idx-meal">Meal Planner</span>
+      <span class="il" id="idx-sleep">Sleep Tracker</span>
+      <span class="il" id="idx-mood">Mood Tracker</span>
+      <span class="il" id="idx-water">Water Tracker</span>
+      <span class="il" id="idx-workout">Workout Log</span>
+      <span class="il" id="idx-steps">Steps Tracker</span>
+      <span class="il" id="idx-symptoms">Symptom Tracker</span>
+    </div>
+    <div class="is"><div class="ist">Productivity</div>
+      <span class="il" id="idx-goals">Smart Goals</span>
+      <span class="il" id="idx-todo">To Do List</span>
+      <span class="il" id="idx-matrix">Priority Matrix</span>
+      <span class="il" id="idx-meeting">Meeting Notes</span>
+      <span class="il" id="idx-project">Project Planner</span>
+      <span class="il" id="idx-pomodoro">Pomodoro</span>
+      <span class="il" id="idx-habits30">30 Day Habits</span>
+    </div>
+    <div class="is"><div class="ist">Finance</div>
+      <span class="il" id="idx-finance">Finance Overview</span>
+      <span class="il" id="idx-savings">Savings Tracker</span>
+      <span class="il" id="idx-bills">Bill Payments</span>
+      <span class="il" id="idx-debt">Debt Tracker</span>
+      <span class="il" id="idx-invest">Investments</span>
+      <span class="il" id="idx-subs">Subscriptions</span>
+    </div>
+    <div class="is"><div class="ist">Self-Care</div>
+      <span class="il" id="idx-gratitude">Gratitude Journal</span>
+      <span class="il" id="idx-vision">Vision Board</span>
+      <span class="il" id="idx-letter">Letter To Myself</span>
+      <span class="il" id="idx-dream">Dream Journal</span>
+      <span class="il" id="idx-bucket">Bucket List</span>
+      <span class="il" id="idx-quotes">Fav Quotes</span>
+    </div>
+    <div class="is"><div class="ist">Notes &amp; Sections</div>
+      <span class="il" id="idx-notes">30 Note Templates</span>
+      <span class="il" id="idx-notes2">12 Custom Sections</span>
+      <div class="ist" style="margin-top:8px;">Stickers &amp; Covers</div>
+      <span class="il" id="idx-stickers">1600+ Sticker Pack</span>
+      <span class="il">50+ Bonus Covers</span>
+    </div>
+    <div class="is"><div class="ist">Quick Jump</div>
+      <span class="il" id="idx-daily">Today's Daily Page</span>
+      <span class="il" id="idx-weekly">This Week</span>
+      <span class="il" id="idx-monthly4">Monthly View</span>
+      <span class="il" id="idx-templates">All Templates</span>
+      <span class="il" id="idx-stickers2">Stickers</span>
+    </div>
+  </div>
+</div>
+
+<!-- DAILY -->
+<div class="pg" id="pg-daily">
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:.9rem;">
+    <div><h1 style="font-family:'Playfair Display',serif;font-size:1.3rem;">Daily Planner</h1><p style="font-size:.73rem;color:var(--tx3);">Balance self-care &amp; productivity</p></div>
+    <input type="date" id="dDate" style="font-family:'DM Sans',sans-serif;font-size:.76rem;border:1px solid var(--bd);border-radius:6px;padding:4px 9px;background:var(--sur);color:var(--tx);cursor:pointer;">
+  </div>
+  <div class="pw">
+    <div class="pl">
+      <div class="lbl">Today's Schedule</div>
+      <div id="sched"></div>
+      <div style="margin-top:.7rem;"><div class="lbl">Moved to Tomorrow</div>
+        <div class="wl"><input class="wi" placeholder="tasks to carry over..."></div>
+        <div class="wl"><input class="wi" placeholder=""></div>
+        <div class="wl"><input class="wi" placeholder=""></div>
+      </div>
+    </div>
+    <div class="sp" id="sp1"></div>
+    <div style="flex:1.3;border-right:1px solid var(--bd);padding:1.2rem;">
+      <div style="font-family:'Playfair Display',serif;font-size:1.6rem;color:var(--tx);" id="dDisp">Today</div>
+      <div style="font-size:.7rem;color:var(--tx3);text-transform:uppercase;letter-spacing:.07em;margin-bottom:.8rem;" id="dSub">Daily Planner</div>
+      <div class="lbl">Priorities</div>
+      <div class="pr-row"><div class="pn">1</div><input class="wi" placeholder="most important task..."></div>
+      <div class="pr-row"><div class="pn">2</div><input class="wi" placeholder=""></div>
+      <div class="pr-row"><div class="pn">3</div><input class="wi" placeholder=""></div>
+      <div style="margin-top:.7rem;"><div class="lbl">Today's Focus</div><div class="wl" style="min-height:44px;"><input class="wi" placeholder="my intention for today..."></div></div>
+      <div style="margin-top:.7rem;"><div class="lbl">To Do</div><div id="tdList"></div><span style="font-size:.7rem;color:var(--acc2);cursor:pointer;margin-top:4px;display:block;" id="addTodoBtn">+ Add task</span></div>
+    </div>
+    <div class="pr2">
+      <div class="lbl">Memo</div>
+      <div class="wl" style="min-height:44px;"><input class="wi" placeholder="notes, ideas..."></div>
+      <div style="margin-top:.7rem;"><div class="lbl">Habit Tracker</div><div id="habList"></div><span style="font-size:.7rem;color:var(--acc2);cursor:pointer;margin-top:3px;display:block;" id="addHabBtn">+ Add habit</span></div>
+      <div style="margin-top:.7rem;"><div class="lbl">Affirmations</div><div class="afm" id="afmBox">Tap for today's affirmation</div></div>
+      <div style="margin-top:.7rem;"><div class="lbl">I Am Grateful For...</div>
+        <div class="wl"><input class="wi" placeholder="1."></div>
+        <div class="wl"><input class="wi" placeholder="2."></div>
+        <div class="wl"><input class="wi" placeholder="3."></div>
+      </div>
+      <div style="margin-top:.7rem;"><div class="lbl">Meal Tracker</div>
+        <div class="cr"><div style="font-size:.65rem;font-weight:600;color:var(--acc2);min-width:14px;">B</div><input class="wi" placeholder="Breakfast"></div>
+        <div class="cr"><div style="font-size:.65rem;font-weight:600;color:var(--acc2);min-width:14px;">L</div><input class="wi" placeholder="Lunch"></div>
+        <div class="cr"><div style="font-size:.65rem;font-weight:600;color:var(--acc2);min-width:14px;">D</div><input class="wi" placeholder="Dinner"></div>
+      </div>
+      <div style="margin-top:.7rem;"><div class="lbl">Water Intake</div>
+        <div style="display:flex;gap:4px;flex-wrap:wrap;" id="wDots"></div>
+        <span style="font-size:.65rem;color:var(--tx3);" id="wCnt">0 / 8 glasses</span>
+      </div>
+      <div style="margin-top:.7rem;"><div class="lbl">Mood</div><div style="display:flex;gap:6px;" id="moodR"></div></div>
+      <div style="margin-top:.7rem;"><div class="lbl">Highlight of the Day</div><div class="wl" style="min-height:36px;"><input class="wi" placeholder="best moment..."></div></div>
+      <div style="margin-top:.7rem;"><div class="lbl">Notes &amp; Reflection</div>
+        <div class="wl"><input class="wi" placeholder="reflect on today..."></div>
+        <div class="wl"><input class="wi" placeholder=""></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- WEEKLY -->
+<div class="pg" id="pg-weekly">
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:.9rem;">
+    <div><h1 style="font-family:'Playfair Display',serif;font-size:1.3rem;">Weekly Planner</h1></div>
+    <div style="display:flex;gap:7px;align-items:center;">
+      <button id="wkPrev" style="padding:3px 9px;border:1px solid var(--bd);border-radius:5px;background:var(--sur);cursor:pointer;">&#8592;</button>
+      <span id="wkLbl" style="font-size:.76rem;color:var(--tx2);min-width:170px;text-align:center;"></span>
+      <button id="wkNext" style="padding:3px 9px;border:1px solid var(--bd);border-radius:5px;background:var(--sur);cursor:pointer;">&#8594;</button>
+    </div>
+  </div>
+  <div class="pw" style="min-height:auto;">
+    <div style="flex:1;overflow:hidden;"><div class="wg" id="wGrid"></div></div>
+    <div class="sp" id="sp2"></div>
+    <div style="width:195px;padding:1rem;flex-shrink:0;">
+      <div class="lbl">Weekly Goals</div>
+      <div class="wl"><input class="wi" placeholder="Goal 1"></div>
+      <div class="wl"><input class="wi" placeholder="Goal 2"></div>
+      <div class="wl"><input class="wi" placeholder="Goal 3"></div>
+      <div style="margin-top:.7rem;"><div class="lbl">Priorities</div>
+        <div class="pr-row"><div class="pn">1</div><input class="wi" placeholder=""></div>
+        <div class="pr-row"><div class="pn">2</div><input class="wi" placeholder=""></div>
+        <div class="pr-row"><div class="pn">3</div><input class="wi" placeholder=""></div>
+      </div>
+      <div style="margin-top:.7rem;"><div class="lbl">To Do</div>
+        <div class="cr"><div class="cb" id="wck1"></div><input class="wi" placeholder=""></div>
+        <div class="cr"><div class="cb" id="wck2"></div><input class="wi" placeholder=""></div>
+        <div class="cr"><div class="cb" id="wck3"></div><input class="wi" placeholder=""></div>
+        <div class="cr"><div class="cb" id="wck4"></div><input class="wi" placeholder=""></div>
+      </div>
+      <div style="margin-top:.7rem;"><div class="lbl">Habit Tracker</div><div id="wHabs"></div></div>
+      <div style="margin-top:.7rem;"><div class="lbl">Notes</div>
+        <div class="wl"><input class="wi" placeholder=""></div>
+        <div class="wl"><input class="wi" placeholder=""></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MONTHLY -->
+<div class="pg" id="pg-monthly">
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:.9rem;">
+    <div><h1 style="font-family:'Playfair Display',serif;font-size:1.3rem;" id="mTitle">Monthly Planner</h1></div>
+    <div style="display:flex;gap:6px;align-items:center;">
+      <button id="mnPrev" style="padding:3px 9px;border:1px solid var(--bd);border-radius:5px;background:var(--sur);cursor:pointer;">&#8592;</button>
+      <span id="mLbl" style="font-size:.84rem;font-weight:500;color:var(--tx2);min-width:120px;text-align:center;"></span>
+      <button id="mnNext" style="padding:3px 9px;border:1px solid var(--bd);border-radius:5px;background:var(--sur);cursor:pointer;">&#8594;</button>
+      <div class="stabs" style="margin-bottom:0;border:none;padding:0;">
+        <div class="stab on" id="mvCal">Calendar</div>
+        <div class="stab" id="mvBud">Budget</div>
+        <div class="stab" id="mvRev">Review</div>
+      </div>
+    </div>
+  </div>
+  <div id="vCal">
+    <div class="pw" style="min-height:auto;">
+      <div style="flex:1;padding:1.1rem;"><div class="cg" id="calGrid"></div></div>
+      <div class="sp" id="sp3"></div>
+      <div style="width:210px;padding:1rem;flex-shrink:0;">
+        <div class="lbl">Month Goal</div>
+        <div class="wl"><input class="wi" placeholder="main goal..."></div>
+        <div class="wl"><input class="wi" placeholder="theme of month..."></div>
+        <div style="margin-top:.7rem;"><div class="lbl">Important Dates</div>
+          <div class="wl"><input class="wi" placeholder=""></div>
+          <div class="wl"><input class="wi" placeholder=""></div>
+          <div class="wl"><input class="wi" placeholder=""></div>
+        </div>
+        <div style="margin-top:.7rem;"><div class="lbl">Bills Due</div>
+          <div class="wl"><input class="wi" placeholder=""></div>
+          <div class="wl"><input class="wi" placeholder=""></div>
+        </div>
+        <div style="margin-top:.7rem;"><div class="lbl">Rate Life Areas</div>
+          <div style="display:flex;justify-content:space-between;padding:4px 0;border-bottom:1px solid var(--bd);"><span style="font-size:.72rem;color:var(--tx2);">Health</span><div class="starG"><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span></div></div>
+          <div style="display:flex;justify-content:space-between;padding:4px 0;border-bottom:1px solid var(--bd);"><span style="font-size:.72rem;color:var(--tx2);">Finance</span><div class="starG"><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span></div></div>
+          <div style="display:flex;justify-content:space-between;padding:4px 0;"><span style="font-size:.72rem;color:var(--tx2);">Personal</span><div class="starG"><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="vBud" style="display:none;">
+    <div class="pw" style="min-height:auto;">
+      <div style="flex:1;padding:1.1rem;">
+        <div class="lbl">Income</div>
+        <table class="bt" style="margin-bottom:.8rem;"><tr><th>Source</th><th>Budgeted</th><th>Actual</th><th>Diff</th></tr>
+          <tr><td><input class="wi" placeholder="Salary"></td><td><input class="wi" placeholder="$0"></td><td><input class="wi" placeholder="$0"></td><td><input class="wi" placeholder="$0"></td></tr>
+          <tr><td><input class="wi" placeholder="Other"></td><td><input class="wi" placeholder="$0"></td><td><input class="wi" placeholder="$0"></td><td><input class="wi" placeholder="$0"></td></tr>
+        </table>
+        <div class="lbl">Expenses</div>
+        <table class="bt"><tr><th>Item</th><th>Budget</th><th>Actual</th><th>Notes</th></tr>
+          <tr><td><input class="wi" placeholder="Rent"></td><td><input class="wi" placeholder="$0"></td><td><input class="wi" placeholder="$0"></td><td><input class="wi" placeholder=""></td></tr>
+          <tr><td><input class="wi" placeholder="Groceries"></td><td><input class="wi" placeholder="$0"></td><td><input class="wi" placeholder="$0"></td><td><input class="wi" placeholder=""></td></tr>
+          <tr><td><input class="wi" placeholder="Transport"></td><td><input class="wi" placeholder="$0"></td><td><input class="wi" placeholder="$0"></td><td><input class="wi" placeholder=""></td></tr>
+          <tr><td><input class="wi" placeholder="Utilities"></td><td><input class="wi" placeholder="$0"></td><td><input class="wi" placeholder="$0"></td><td><input class="wi" placeholder=""></td></tr>
+          <tr><td><input class="wi" placeholder="Entertainment"></td><td><input class="wi" placeholder="$0"></td><td><input class="wi" placeholder="$0"></td><td><input class="wi" placeholder=""></td></tr>
+          <tr><td><input class="wi" placeholder="Shopping"></td><td><input class="wi" placeholder="$0"></td><td><input class="wi" placeholder="$0"></td><td><input class="wi" placeholder=""></td></tr>
+          <tr><td><input class="wi" placeholder="Other"></td><td><input class="wi" placeholder="$0"></td><td><input class="wi" placeholder="$0"></td><td><input class="wi" placeholder=""></td></tr>
+        </table>
+      </div>
+      <div class="sp"></div>
+      <div style="width:200px;padding:1rem;flex-shrink:0;">
+        <div class="lbl">Summary</div>
+        <div style="background:var(--tl);border-radius:7px;padding:9px;margin-bottom:7px;border:1px solid var(--bd);"><div style="font-size:.65rem;color:var(--tx3);">Total Income</div><input class="wi" placeholder="$0.00" style="font-size:1rem;font-weight:600;color:var(--td);"></div>
+        <div style="background:var(--tl);border-radius:7px;padding:9px;margin-bottom:7px;border:1px solid var(--bd);"><div style="font-size:.65rem;color:var(--tx3);">Total Expenses</div><input class="wi" placeholder="$0.00" style="font-size:1rem;font-weight:600;color:var(--td);"></div>
+        <div style="background:var(--tl);border-radius:7px;padding:9px;margin-bottom:.9rem;border:1px solid var(--bd);"><div style="font-size:.65rem;color:var(--tx3);">Balance</div><input class="wi" placeholder="$0.00" style="font-size:1rem;font-weight:600;color:var(--td);"></div>
+        <div class="lbl">Savings Goal</div>
+        <div class="wl"><input class="wi" placeholder="goal..."></div>
+        <div class="wl"><input class="wi" placeholder="saved so far..."></div>
+        <div class="pb-wrap" style="margin-top:5px;"><div class="pb-fill" style="width:20%;"></div></div>
+      </div>
+    </div>
+  </div>
+  <div id="vRev" style="display:none;">
+    <div class="pw" style="min-height:auto;">
+      <div style="flex:1;padding:1.1rem;">
+        <div class="lbl">Monthly Review</div>
+        <div class="wl" style="min-height:55px;"><input class="wi" placeholder="What went well this month?"></div>
+        <div class="wl" style="min-height:55px;"><input class="wi" placeholder="What could have gone better?"></div>
+        <div class="wl" style="min-height:55px;"><input class="wi" placeholder="Top 3 lessons this month?"></div>
+        <div style="margin-top:.8rem;"><div class="lbl">Rate Your Month</div>
+          <div class="g2">
+            <div>
+              <div style="display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid var(--bd);"><span style="font-size:.72rem;color:var(--tx2);">Health</span><div class="starG"><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span></div></div>
+              <div style="display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid var(--bd);"><span style="font-size:.72rem;color:var(--tx2);">Mindset</span><div class="starG"><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span></div></div>
+              <div style="display:flex;justify-content:space-between;padding:5px 0;"><span style="font-size:.72rem;color:var(--tx2);">Career</span><div class="starG"><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span></div></div>
+            </div>
+            <div>
+              <div style="display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid var(--bd);"><span style="font-size:.72rem;color:var(--tx2);">Finance</span><div class="starG"><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span></div></div>
+              <div style="display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid var(--bd);"><span style="font-size:.72rem;color:var(--tx2);">Fun</span><div class="starG"><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span></div></div>
+              <div style="display:flex;justify-content:space-between;padding:5px 0;"><span style="font-size:.72rem;color:var(--tx2);">Overall</span><div class="starG"><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="sp"></div>
+      <div style="width:210px;padding:1rem;flex-shrink:0;">
+        <div class="lbl">Achievements</div>
+        <div class="wl"><input class="wi" placeholder="1."></div>
+        <div class="wl"><input class="wi" placeholder="2."></div>
+        <div class="wl"><input class="wi" placeholder="3."></div>
+        <div style="margin-top:.8rem;"><div class="lbl">Goals for Next Month</div>
+          <div class="wl"><input class="wi" placeholder="1."></div>
+          <div class="wl"><input class="wi" placeholder="2."></div>
+          <div class="wl"><input class="wi" placeholder="3."></div>
+        </div>
+        <div style="margin-top:.8rem;"><div class="afm" id="revAfm">tap for inspiration</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- NOTES -->
+<div class="pg" id="pg-notes">
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:.9rem;">
+    <div><h1 style="font-family:'Playfair Display',serif;font-size:1.3rem;">Notes Hub</h1><p style="font-size:.73rem;color:var(--tx3);">30 templates &middot; 12 custom sections</p></div>
+    <select id="nSec" style="font-size:.74rem;border:1px solid var(--bd);border-radius:5px;padding:4px 8px;background:var(--sur);color:var(--tx);">
+      <option>Custom Section 1</option><option>Section 2</option><option>Section 3</option><option>Section 4</option><option>Section 5</option><option>Section 6</option><option>Section 7</option><option>Section 8</option><option>Section 9</option><option>Section 10</option><option>Section 11</option><option>Section 12</option>
+    </select>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:7px;margin-bottom:.9rem;" id="nTypes"></div>
+  <div class="pw" style="min-height:480px;">
+    <div class="pl"><div class="lbl" id="nTypeLbl">Lined</div><div id="nLines"></div></div>
+    <div class="sp"></div>
+    <div class="pr2">
+      <div class="lbl">Quick Capture</div>
+      <div class="wl"><input class="wi" placeholder="ideas, key points..."></div>
+      <div class="wl"><input class="wi" placeholder=""></div>
+      <div class="wl"><input class="wi" placeholder=""></div>
+      <div style="margin-top:.7rem;"><div class="lbl">Key Takeaways</div>
+        <div class="cr"><div class="cb" id="ntk1"></div><input class="wi" placeholder=""></div>
+        <div class="cr"><div class="cb" id="ntk2"></div><input class="wi" placeholder=""></div>
+        <div class="cr"><div class="cb" id="ntk3"></div><input class="wi" placeholder=""></div>
+      </div>
+      <div style="margin-top:.7rem;"><div class="lbl">Action Items</div>
+        <div class="pr-row"><div class="pn">1</div><input class="wi" placeholder=""></div>
+        <div class="pr-row"><div class="pn">2</div><input class="wi" placeholder=""></div>
+        <div class="pr-row"><div class="pn">3</div><input class="wi" placeholder=""></div>
+      </div>
+      <div style="margin-top:.7rem;"><div class="lbl">Summary</div>
+        <textarea style="border:none;background:transparent;width:100%;resize:none;font-family:'DM Sans',sans-serif;font-size:.8rem;color:var(--tx);outline:none;min-height:80px;border-top:1px solid var(--bd);" placeholder="summarize key points..."></textarea>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TEMPLATES -->
+<div class="pg" id="pg-templates">
+  <div style="margin-bottom:.9rem;"><h1 style="font-family:'Playfair Display',serif;font-size:1.3rem;">Bonus Templates</h1><p style="font-size:.73rem;color:var(--tx3);">80+ templates — click any card to open it</p></div>
+  <div class="stabs" id="tFilt">
+    <div class="stab on" data-f="all">All</div>
+    <div class="stab" data-f="wellness">Wellness</div>
+    <div class="stab" data-f="productivity">Productivity</div>
+    <div class="stab" data-f="finance">Finance</div>
+    <div class="stab" data-f="lifestyle">Lifestyle</div>
+    <div class="stab" data-f="selfcare">Self-Care</div>
+  </div>
+  <div class="tgrid" id="tGrid"></div>
+</div>
+
+<!-- STICKERS -->
+<div class="pg" id="pg-stickers">
+  <div style="margin-bottom:.9rem;"><h1 style="font-family:'Playfair Display',serif;font-size:1.3rem;">Sticker Pack</h1><p style="font-size:.73rem;color:var(--tx3);">Click any sticker to copy it</p></div>
+  <div class="stabs" id="sFilt">
+    <div class="stab on" data-f="all">All</div>
+    <div class="stab" data-f="nature">Nature</div>
+    <div class="stab" data-f="lifestyle">Lifestyle</div>
+    <div class="stab" data-f="food">Food</div>
+    <div class="stab" data-f="mood">Mood</div>
+    <div class="stab" data-f="icons">Icons</div>
+  </div>
+  <div class="sgrid" id="sGrid"></div>
+</div>
+
+</div><!-- /main -->
+
+<script>
+(function() {
+  // ===== DATA =====
+  var habits = ['Morning skincare', 'Exercise', 'Read 30 min', 'Meditate', 'Drink water'];
+  var afms = ['I am capable of achieving great things.', 'Every day is a fresh start.', 'I am worthy of love, success and happiness.', 'I choose joy and gratitude every moment.', 'My potential is limitless.', 'I am creating the life of my dreams.', 'I believe in myself.', 'I attract positivity and abundance.', 'I am strong, resilient and full of purpose.', 'Today I will be my best self.'];
+  var wOff = 0;
+  var curM = new Date().getMonth();
+  var curY = new Date().getFullYear();
+  var wCnt = 0;
+  var tplFilter = 'all';
+  var stkFilter = 'all';
+  var MNS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+
+  var TPLS = [
+    {id:'meal',cat:'wellness',ico:'🥗',name:'Meal Planner',desc:'Weekly meal planning'},
+    {id:'water',cat:'wellness',ico:'💧',name:'Water Tracker',desc:'30-day hydration log'},
+    {id:'workout',cat:'wellness',ico:'🏃',name:'Workout Log',desc:'Exercise and fitness'},
+    {id:'sleep',cat:'wellness',ico:'😴',name:'Sleep Tracker',desc:'Monthly sleep log'},
+    {id:'mood',cat:'wellness',ico:'😊',name:'Mood Tracker',desc:'30-day mood tracker'},
+    {id:'supplements',cat:'wellness',ico:'💊',name:'Supplements',desc:'Vitamins and meds log'},
+    {id:'symptoms',cat:'wellness',ico:'🌡',name:'Symptom Tracker',desc:'Health symptoms'},
+    {id:'steps',cat:'wellness',ico:'🚶',name:'Steps Tracker',desc:'Daily step counter'},
+    {id:'todo',cat:'productivity',ico:'✅',name:'To Do List',desc:'Task management'},
+    {id:'time',cat:'productivity',ico:'⏱',name:'Time Tracker',desc:'Log time on tasks'},
+    {id:'goals',cat:'productivity',ico:'🎯',name:'Smart Goals',desc:'SMART goal planner'},
+    {id:'matrix',cat:'productivity',ico:'📋',name:'Priority Matrix',desc:'Eisenhower matrix'},
+    {id:'appointments',cat:'productivity',ico:'📅',name:'Appointments',desc:'Schedule tracker'},
+    {id:'meeting',cat:'productivity',ico:'🗒',name:'Meeting Notes',desc:'Meeting minutes'},
+    {id:'pomodoro',cat:'productivity',ico:'🍅',name:'Pomodoro',desc:'Focus timer tracker'},
+    {id:'project',cat:'productivity',ico:'📁',name:'Project Planner',desc:'Project management'},
+    {id:'habits30',cat:'productivity',ico:'🔥',name:'30 Day Habits',desc:'30-day habit tracker'},
+    {id:'budget',cat:'finance',ico:'💸',name:'Finance Overview',desc:'Full budget tracker'},
+    {id:'savings',cat:'finance',ico:'📊',name:'Savings Tracker',desc:'Track your savings'},
+    {id:'bills',cat:'finance',ico:'🏦',name:'Bill Payments',desc:'Bills and due dates'},
+    {id:'debt',cat:'finance',ico:'💳',name:'Debt Tracker',desc:'Debt payoff plan'},
+    {id:'invest',cat:'finance',ico:'📈',name:'Investments',desc:'Investment log'},
+    {id:'subs',cat:'finance',ico:'🔔',name:'Subscriptions',desc:'Recurring costs'},
+    {id:'fingoals',cat:'finance',ico:'💰',name:'Financial Goals',desc:'Savings targets'},
+    {id:'books',cat:'lifestyle',ico:'📚',name:'Book Log',desc:'Reading tracker'},
+    {id:'movies',cat:'lifestyle',ico:'🎬',name:'Movie Log',desc:'Films and shows'},
+    {id:'cleaning',cat:'lifestyle',ico:'🧹',name:'Cleaning Log',desc:'Home cleaning'},
+    {id:'trip',cat:'lifestyle',ico:'✈️',name:'Trip Planner',desc:'Travel planning'},
+    {id:'wishlist',cat:'lifestyle',ico:'🎁',name:'Wishlist',desc:'Items you want'},
+    {id:'birthdays',cat:'lifestyle',ico:'🎂',name:'Birthdays',desc:'Birthday reminders'},
+    {id:'orders',cat:'lifestyle',ico:'📦',name:'Order Tracker',desc:'Online orders'},
+    {id:'passwords',cat:'lifestyle',ico:'🔑',name:'Passwords',desc:'Secure password log'},
+    {id:'packing',cat:'lifestyle',ico:'🧳',name:'Packing Checklist',desc:'Travel packing'},
+    {id:'gratitude',cat:'selfcare',ico:'🌸',name:'Gratitude Journal',desc:'Daily gratitude'},
+    {id:'vision',cat:'selfcare',ico:'💫',name:'Vision Board',desc:'Goals and dreams'},
+    {id:'letter',cat:'selfcare',ico:'✉️',name:'Letter To Myself',desc:'Self-reflection'},
+    {id:'dream',cat:'selfcare',ico:'🌙',name:'Dream Journal',desc:'Dream recording'},
+    {id:'affirmations',cat:'selfcare',ico:'💭',name:'Affirmations',desc:'Daily affirmations'},
+    {id:'bucket',cat:'selfcare',ico:'🪣',name:'Bucket List',desc:'Life experiences'},
+    {id:'quotes',cat:'selfcare',ico:'💬',name:'Fav Quotes',desc:'Inspirational quotes'}
+  ];
+
+  var stkData = {
+    nature: ['🌸','🌺','🌻','🌹','🌷','🌿','🍃','🍂','🍁','🌾','🌵','🌴','🌲','🌳','🦋','🐝','🌈','⭐','✨','🌙','☀️','🌤','❄️','🌊','🪻','🌱','🍀','🍄','🌺','🌸'],
+    lifestyle: ['📚','✏️','📝','🎯','💻','🎧','🏋️','🧘','☕','🍵','🛁','💄','👗','💍','🎀','🧸','🎨','📷','🎵','🎶','🏠','🛋','🪴','🕯','📱','⌚','🎒','✈️'],
+    food: ['🍓','🍇','🍊','🍋','🍑','🍒','🥝','🫐','🍎','🍌','🥑','🧁','🍰','🎂','🍩','🍪','🍫','🍦','🥞','☕','🍵','🧃','🥤','🍹','🥗','🍜','🍝','🧋'],
+    mood: ['😊','😄','🥰','😍','🤩','😎','🥳','😌','😇','🫶','💪','🙌','👏','🤗','💃','💡','🔥','⚡','💯','🏆','🥇','🌟','💫','✨','🎉','🎊','🎈','❤️','💕'],
+    icons: ['📅','📆','🗓','⏰','⌛','🔔','📌','📍','🔖','📎','✂️','📊','📈','📉','🗂','📁','📂','🗒','📋','📓','📒','📃','📄','🗝','🔑','💡','🔍','📏','📐']
+  };
+
+  // ===== HELPERS =====
+  function el(id) { return document.getElementById(id); }
+  function toast(msg) {
+    var t = el('toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    setTimeout(function() { t.classList.remove('show'); }, 2200);
+  }
+  function goPage(p) {
+    document.querySelectorAll('.nt').forEach(function(t) { t.classList.toggle('on', t.getAttribute('data-p') === p); });
+    document.querySelectorAll('.pg').forEach(function(pg) { pg.classList.toggle('on', pg.id === 'pg-' + p); });
+  }
+  function toggleCb(cb) { cb.classList.toggle('ck'); }
+  function mkSpiral(id, n) {
+    var e = el(id); if (!e) return;
+    e.innerHTML = '';
+    for (var i = 0; i < (n || 14); i++) { var r = document.createElement('div'); r.className = 'sr'; e.appendChild(r); }
+  }
+
+  // ===== MODAL =====
+  function openModal(title, html) {
+    el('mTitle').textContent = title;
+    el('mBody').innerHTML = html;
+    el('modal').classList.add('open');
+    // re-init checkboxes inside modal
+    el('mBody').querySelectorAll('.cb').forEach(function(cb) {
+      cb.addEventListener('click', function() { toggleCb(this); });
+    });
+    // re-init stars inside modal
+    el('mBody').querySelectorAll('.starG').forEach(function(sg) {
+      sg.addEventListener('click', function(e) {
+        if (e.target.classList.contains('star')) {
+          var stars = sg.querySelectorAll('.star');
+          var idx = Array.from(stars).indexOf(e.target);
+          stars.forEach(function(s, i) { s.classList.toggle('lit', i <= idx); });
+        }
+      });
+    });
+  }
+  function closeModal() { el('modal').classList.remove('open'); }
+  el('mClsBtn').addEventListener('click', closeModal);
+  el('modal').addEventListener('click', function(e) { if (e.target === this) closeModal(); });
+
+  function openTpl(id) {
+    var t = null;
+    for (var i = 0; i < TPLS.length; i++) { if (TPLS[i].id === id) { t = TPLS[i]; break; } }
+    if (!t) { t = {ico: '📋', name: id, desc: 'Template'}; }
+    openModal(t.ico + ' ' + t.name, buildTplHTML(id, t));
+  }
+
+  // ===== TEMPLATE HTML BUILDERS =====
+  function row(placeholder) {
+    return '<div class="wl"><input class="wi" placeholder="' + placeholder + '"></div>';
+  }
+  function cbRow(placeholder) {
+    return '<div class="cr"><div class="cb"></div><input class="wi" placeholder="' + placeholder + '"></div>';
+  }
+
+  function buildTplHTML(id, t) {
+    if (id === 'meal') {
+      var h = '<div class="lbl">Weekly Meal Planner</div>';
+      h += '<table class="mt"><tr><th>Day</th><th>Breakfast</th><th>Lunch</th><th>Dinner</th><th>Snacks</th></tr>';
+      var days = ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'];
+      for (var i = 0; i < days.length; i++) {
+        h += '<tr><td style="padding:6px 9px;font-weight:500;font-size:.76rem;color:var(--acc2);">' + days[i] + '</td>';
+        for (var c = 0; c < 4; c++) h += '<td><input class="wi" style="padding:5px 8px;" placeholder=""></td>';
+        h += '</tr>';
+      }
+      h += '</table>';
+      h += '<div style="margin-top:1rem;"><div class="lbl">Grocery List</div>';
+      h += '<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:4px;">';
+      for (var g = 0; g < 15; g++) h += cbRow('item...');
+      h += '</div></div>';
+      return h;
+    }
+    if (id === 'water') {
+      var h = '<div class="lbl">30-Day Water Tracker</div>';
+      h += '<div style="display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin-top:6px;">';
+      for (var d = 1; d <= 30; d++) {
+        h += '<div style="border:1px solid var(--bd);border-radius:7px;padding:7px;text-align:center;">';
+        h += '<div style="font-size:.65rem;color:var(--acc2);font-weight:600;margin-bottom:5px;">Day ' + d + '</div>';
+        h += '<div style="display:flex;gap:2px;flex-wrap:wrap;justify-content:center;" class="wdGroup">';
+        for (var g = 0; g < 8; g++) h += '<div class="wd" onclick="this.classList.toggle(\'fl\')"></div>';
+        h += '</div></div>';
+      }
+      h += '</div>';
+      return h;
+    }
+    if (id === 'workout') {
+      var h = '<div class="g2">';
+      h += '<div><div class="lbl">Exercise Log</div>';
+      h += '<table class="bt"><tr><th>Exercise</th><th>Sets</th><th>Reps</th><th>Weight</th><th>Notes</th></tr>';
+      for (var r = 0; r < 8; r++) {
+        h += '<tr>';
+        for (var c = 0; c < 5; c++) h += '<td><input class="wi" style="padding:5px;" placeholder=""></td>';
+        h += '</tr>';
+      }
+      h += '</table></div>';
+      h += '<div><div class="lbl">Stats</div>';
+      var stats = [['Duration','min'],['Calories','kcal'],['Distance','km'],['Heart Rate','bpm']];
+      for (var s = 0; s < stats.length; s++) {
+        h += '<div style="display:flex;justify-content:space-between;align-items:center;padding:8px;border-bottom:1px solid var(--bd);">';
+        h += '<span style="font-size:.76rem;color:var(--tx2);">' + stats[s][0] + '</span>';
+        h += '<div style="display:flex;align-items:center;gap:4px;"><input class="wi" style="width:55px;text-align:right;" placeholder="0"><span style="font-size:.68rem;color:var(--tx3);">' + stats[s][1] + '</span></div></div>';
+      }
+      h += '<div style="margin-top:.8rem;"><div class="lbl">Notes</div>';
+      h += '<textarea style="width:100%;min-height:80px;border:1px solid var(--bd);border-radius:6px;padding:8px;font-family:DM Sans,sans-serif;font-size:.78rem;resize:none;background:var(--sur);color:var(--tx);outline:none;" placeholder="How was the workout?"></textarea></div>';
+      h += '</div></div>';
+      return h;
+    }
+    if (id === 'sleep') {
+      var h = '<div class="lbl">Monthly Sleep Tracker</div>';
+      h += '<div style="overflow-x:auto;"><table class="bt"><tr><th>Day</th><th>Bedtime</th><th>Wake Up</th><th>Hours</th><th>Quality</th><th>Notes</th></tr>';
+      for (var n = 1; n <= 31; n++) {
+        h += '<tr><td style="padding:5px 9px;font-weight:500;font-size:.73rem;color:var(--acc2);">' + n + '</td>';
+        for (var c = 0; c < 5; c++) h += '<td><input class="wi" style="padding:4px 6px;" placeholder=""></td>';
+        h += '</tr>';
+      }
+      h += '</table></div>';
+      return h;
+    }
+    if (id === 'mood') {
+      var h = '<div class="lbl">Monthly Mood Tracker</div>';
+      var colors = ['#a8b8d0','#b0c4de','#c8c8c8','#d4c8a8','#c8d8a8','#a8d0a8','#f0d080'];
+      var emojis = ['😔','😢','😐','🙂','😊','😄','🤩'];
+      h += '<div style="display:flex;gap:8px;align-items:center;margin-bottom:10px;flex-wrap:wrap;">';
+      for (var i = 0; i < colors.length; i++) {
+        h += '<div style="display:flex;align-items:center;gap:3px;"><div style="width:14px;height:14px;border-radius:50%;background:' + colors[i] + ';border:1px solid var(--bd);"></div><span style="font-size:.68rem;color:var(--tx3);">' + emojis[i] + '</span></div>';
+      }
+      h += '</div><div style="display:grid;grid-template-columns:repeat(7,1fr);gap:5px;">';
+      for (var d = 1; d <= 31; d++) {
+        h += '<div style="border:1px solid var(--bd);border-radius:8px;padding:6px;text-align:center;cursor:pointer;" class="moodDay">';
+        h += '<div style="font-size:.63rem;color:var(--tx3);margin-bottom:4px;">' + d + '</div>';
+        h += '<div style="width:26px;height:26px;border-radius:50%;background:var(--sur2);margin:auto;border:1px solid var(--bd);transition:all .2s;" class="moodCircle"></div>';
+        h += '</div>';
+      }
+      h += '</div>';
+      return h;
+    }
+    if (id === 'habits30') {
+      var h = '<div class="lbl">30-Day Habit Tracker</div><div style="overflow-x:auto;">';
+      h += '<table class="bt"><tr><th style="min-width:130px;">Habit</th>';
+      for (var d = 1; d <= 31; d++) h += '<th style="min-width:20px;">' + d + '</th>';
+      h += '</tr>';
+      var defH = ['Morning Skincare','Exercise','Read 30 min','Meditate','Drink 8 glasses','Sleep 8hrs','Gratitude','Healthy eating','Study','No social media'];
+      for (var i = 0; i < defH.length; i++) {
+        h += '<tr><td style="padding:5px 9px;font-size:.73rem;color:var(--tx2);">' + defH[i] + '</td>';
+        for (var d = 1; d <= 31; d++) h += '<td style="text-align:center;cursor:pointer;padding:2px;" class="habitCell"></td>';
+        h += '</tr>';
+      }
+      h += '<tr><td style="padding:5px 9px;"><input class="wi" placeholder="Custom habit..."></td>';
+      for (var d = 1; d <= 31; d++) h += '<td style="text-align:center;cursor:pointer;padding:2px;" class="habitCell"></td>';
+      h += '</tr></table></div>';
+      return h;
+    }
+    if (id === 'goals') {
+      var h = '<div class="lbl">SMART Goals Planner</div>';
+      for (var gn = 1; gn <= 3; gn++) {
+        h += '<div style="border:1px solid var(--bd);border-radius:8px;padding:1rem;margin-bottom:.8rem;background:var(--sur);">';
+        h += '<div style="display:flex;align-items:center;gap:8px;margin-bottom:.7rem;">';
+        h += '<div class="pn">' + gn + '</div>';
+        h += '<input class="wi" style="font-weight:500;font-size:.9rem;" placeholder="Goal name...">';
+        h += '</div>';
+        h += '<div class="g2">';
+        var fields = [['S - Specific','What exactly?'],['M - Measurable','How to track?'],['A - Achievable','Is it realistic?'],['R - Relevant','Why does it matter?']];
+        for (var f = 0; f < fields.length; f++) {
+          h += '<div><div class="lbl">' + fields[f][0] + '</div>';
+          h += '<textarea style="width:100%;min-height:48px;border:1px solid var(--bd);border-radius:5px;padding:6px;font-family:DM Sans,sans-serif;font-size:.75rem;resize:none;background:var(--sur);color:var(--tx);outline:none;" placeholder="' + fields[f][1] + '"></textarea></div>';
+        }
+        h += '</div>';
+        h += '<div style="margin-top:7px;display:grid;grid-template-columns:1fr 1fr;gap:7px;">';
+        h += '<div><div class="lbl">T - Deadline</div><input class="wi" style="border:1px solid var(--bd);border-radius:5px;padding:5px 8px;" type="date"></div>';
+        h += '<div><div class="lbl">Progress</div><div class="pb-wrap"><div class="pb-fill gpb" id="gpb' + gn + '" style="width:0%;"></div></div><input type="range" min="0" max="100" value="0" style="width:100%;accent-color:var(--acc2);" oninput="document.getElementById(\'gpb' + gn + '\').style.width=this.value+\'%\'"></div>';
+        h += '</div></div>';
+      }
+      return h;
+    }
+    if (id === 'budget' || id === 'finance') {
+      var h = '<div class="g2">';
+      h += '<div><div class="lbl">Income</div>';
+      h += '<table class="bt" style="margin-bottom:.7rem;"><tr><th>Source</th><th>Budgeted</th><th>Actual</th><th>Diff</th></tr>';
+      var inc = ['Salary','Side Income','Other'];
+      for (var i = 0; i < inc.length; i++) {
+        h += '<tr><td><input class="wi" style="padding:5px 7px;" placeholder="' + inc[i] + '"></td><td><input class="wi" style="padding:5px;" placeholder="$0"></td><td><input class="wi" style="padding:5px;" placeholder="$0"></td><td><input class="wi" style="padding:5px;" placeholder="$0"></td></tr>';
+      }
+      h += '</table>';
+      h += '<div class="lbl">Fixed Expenses</div>';
+      h += '<table class="bt"><tr><th>Item</th><th>Budget</th><th>Actual</th></tr>';
+      var fix = ['Rent','Insurance','Loan','Subscriptions'];
+      for (var i = 0; i < fix.length; i++) {
+        h += '<tr><td><input class="wi" style="padding:5px;" placeholder="' + fix[i] + '"></td><td><input class="wi" style="padding:5px;" placeholder="$0"></td><td><input class="wi" style="padding:5px;" placeholder="$0"></td></tr>';
+      }
+      h += '</table></div>';
+      h += '<div><div class="lbl">Variable Expenses</div>';
+      h += '<table class="bt" style="margin-bottom:.8rem;"><tr><th>Item</th><th>Budget</th><th>Actual</th></tr>';
+      var vari = ['Groceries','Dining Out','Transport','Entertainment','Shopping','Other'];
+      for (var i = 0; i < vari.length; i++) {
+        h += '<tr><td><input class="wi" style="padding:5px;" placeholder="' + vari[i] + '"></td><td><input class="wi" style="padding:5px;" placeholder="$0"></td><td><input class="wi" style="padding:5px;" placeholder="$0"></td></tr>';
+      }
+      h += '</table>';
+      h += '<div class="lbl">Summary</div>';
+      h += '<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;">';
+      var sums = ['Income','Expenses','Balance'];
+      for (var i = 0; i < sums.length; i++) {
+        h += '<div style="background:var(--tl);border-radius:7px;padding:8px;text-align:center;border:1px solid var(--bd);"><div style="font-size:.65rem;color:var(--tx3);">' + sums[i] + '</div><input class="wi" style="font-size:.95rem;font-weight:600;color:var(--td);text-align:center;" placeholder="$0"></div>';
+      }
+      h += '</div>';
+      h += '<div style="margin-top:.8rem;"><div class="lbl">Savings Goal</div>';
+      h += '<div class="pb-wrap" style="height:8px;"><div class="pb-fill" id="bsBar" style="width:20%;"></div></div>';
+      h += '<input type="range" min="0" max="100" value="20" style="width:100%;accent-color:var(--acc2);" oninput="document.getElementById(\'bsBar\').style.width=this.value+\'%\'">';
+      h += '</div></div></div>';
+      return h;
+    }
+    if (id === 'trip') {
+      var h = '<div class="g2"><div><div class="lbl">Trip Details</div>';
+      var fields = ['Destination','Travel Dates','Budget','Accommodation','Transport','Emergency Contact'];
+      for (var i = 0; i < fields.length; i++) {
+        h += '<div style="display:flex;align-items:center;gap:7px;padding:6px 0;border-bottom:1px solid var(--bd);">';
+        h += '<span style="font-size:.72rem;color:var(--tx3);min-width:115px;">' + fields[i] + '</span>';
+        h += '<input class="wi" placeholder=""></div>';
+      }
+      h += '<div style="margin-top:.8rem;"><div class="lbl">Packing List</div>';
+      var items = ['Passport','Tickets','Hotel confirmation','Travel insurance','Charger','Clothes','Toiletries','Camera','Medications','Snacks','First aid','Travel pillow'];
+      for (var i = 0; i < items.length; i++) h += cbRow(items[i]);
+      h += '</div></div>';
+      h += '<div><div class="lbl">Day-by-Day Itinerary</div>';
+      for (var dy = 1; dy <= 6; dy++) {
+        h += '<div style="margin-bottom:7px;border:1px solid var(--bd);border-radius:6px;padding:8px;">';
+        h += '<div style="font-size:.72rem;font-weight:600;color:var(--acc2);margin-bottom:4px;">Day ' + dy + '</div>';
+        h += '<input class="wi" placeholder="Morning..." style="border-bottom:1px solid var(--bd);padding-bottom:4px;margin-bottom:4px;">';
+        h += '<input class="wi" placeholder="Afternoon..." style="border-bottom:1px solid var(--bd);padding-bottom:4px;margin-bottom:4px;">';
+        h += '<input class="wi" placeholder="Evening...">';
+        h += '</div>';
+      }
+      h += '</div></div>';
+      return h;
+    }
+    if (id === 'gratitude') {
+      var h = '<div class="lbl">Weekly Gratitude Journal</div>';
+      for (var wk = 1; wk <= 4; wk++) {
+        h += '<div style="border:1px solid var(--bd);border-radius:8px;padding:.9rem;margin-bottom:.7rem;">';
+        h += '<div style="font-family:Playfair Display,serif;font-size:.85rem;color:var(--acc2);margin-bottom:7px;">Week ' + wk + '</div>';
+        h += '<div style="display:grid;grid-template-columns:repeat(7,1fr);gap:5px;">';
+        var dnames = ['M','T','W','T','F','S','S'];
+        for (var d = 0; d < 7; d++) {
+          h += '<div style="border:1px solid var(--bd);border-radius:6px;padding:5px;text-align:center;">';
+          h += '<div style="font-size:.63rem;color:var(--td);font-weight:600;margin-bottom:3px;">' + dnames[d] + '</div>';
+          h += '<textarea style="width:100%;min-height:55px;border:none;font-size:.65rem;resize:none;background:transparent;color:var(--tx2);font-family:DM Sans,sans-serif;outline:none;" placeholder="grateful for..."></textarea>';
+          h += '</div>';
+        }
+        h += '</div></div>';
+      }
+      return h;
+    }
+    if (id === 'matrix') {
+      var h = '<div class="lbl">Priority Matrix - Eisenhower</div>';
+      h += '<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:6px;">';
+      var quads = [['Do First','Urgent + Important',true],['Schedule','Not Urgent + Important',true],['Delegate','Urgent + Not Important',false],['Eliminate','Not Urgent + Not Important',false]];
+      for (var q = 0; q < quads.length; q++) {
+        h += '<div style="border:1px solid var(--bd);border-radius:8px;padding:.9rem;background:' + (quads[q][2] ? 'var(--tl)' : 'var(--sur)') + ';">';
+        h += '<div style="font-size:.78rem;font-weight:600;color:var(--tx);margin-bottom:2px;">' + quads[q][0] + '</div>';
+        h += '<div style="font-size:.65rem;color:var(--tx3);margin-bottom:8px;">' + quads[q][1] + '</div>';
+        for (var r = 0; r < 5; r++) h += cbRow('task...');
+        h += '</div>';
+      }
+      h += '</div>';
+      return h;
+    }
+    if (id === 'books') {
+      var h = '<div class="lbl">Book Log</div>';
+      h += '<table class="bt"><tr><th>#</th><th>Title</th><th>Author</th><th>Genre</th><th>Started</th><th>Finished</th><th>Rating</th></tr>';
+      for (var i = 1; i <= 12; i++) {
+        h += '<tr><td style="padding:5px 9px;font-size:.7rem;color:var(--tx3);">' + i + '</td>';
+        for (var c = 0; c < 6; c++) h += '<td><input class="wi" style="padding:4px 6px;" placeholder=""></td>';
+        h += '</tr>';
+      }
+      h += '</table>';
+      h += '<div style="margin-top:.8rem;"><div class="lbl">Currently Reading</div>';
+      h += '<div style="border:1px solid var(--bd);border-radius:8px;padding:.9rem;">';
+      h += row('Book title...');
+      h += row('Author...');
+      h += '<div style="margin-top:.6rem;"><div class="lbl">My Thoughts</div>';
+      h += '<textarea style="width:100%;min-height:60px;border:1px solid var(--bd);border-radius:5px;padding:6px;font-family:DM Sans,sans-serif;font-size:.78rem;resize:none;background:var(--sur);color:var(--tx);outline:none;" placeholder="What do I think so far?"></textarea></div>';
+      h += '</div></div>';
+      return h;
+    }
+    if (id === 'savings') {
+      var h = '<div class="lbl">Savings Tracker</div>';
+      h += '<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:.8rem;">';
+      for (var i = 0; i < 3; i++) {
+        h += '<div style="border:1px solid var(--bd);border-radius:8px;padding:.9rem;background:var(--sur);">';
+        h += '<div class="lbl">Savings Goal ' + (i+1) + '</div>';
+        h += '<input class="wi" style="font-size:.85rem;font-weight:500;" placeholder="Goal name...">';
+        h += '<div style="display:flex;justify-content:space-between;margin-top:5px;"><span style="font-size:.68rem;color:var(--tx3);">Target</span><input class="wi" style="width:80px;text-align:right;" placeholder="$0"></div>';
+        h += '<div style="display:flex;justify-content:space-between;"><span style="font-size:.68rem;color:var(--tx3);">Saved</span><input class="wi" style="width:80px;text-align:right;" placeholder="$0"></div>';
+        h += '<div class="pb-wrap" style="margin-top:8px;height:7px;"><div class="pb-fill sg' + i + '" style="width:0%;"></div></div>';
+        h += '<input type="range" min="0" max="100" value="0" style="width:100%;accent-color:var(--acc2);" oninput="this.previousElementSibling.firstChild.style.width=this.value+\'%\'">';
+        h += '</div>';
+      }
+      h += '</div>';
+      h += '<div class="lbl">Monthly Log</div>';
+      h += '<table class="bt"><tr><th>Month</th><th>Saved</th><th>Running Total</th><th>Notes</th></tr>';
+      for (var m = 0; m < MNS.length; m++) {
+        h += '<tr><td style="padding:5px 9px;font-size:.74rem;color:var(--tx2);">' + MNS[m] + '</td>';
+        for (var c = 0; c < 3; c++) h += '<td><input class="wi" style="padding:5px 7px;" placeholder=""></td>';
+        h += '</tr>';
+      }
+      h += '</table>';
+      return h;
+    }
+    if (id === 'todo') {
+      var h = '<div class="g2"><div><div class="lbl">To Do List</div>';
+      for (var i = 0; i < 15; i++) {
+        h += '<div style="display:flex;align-items:center;gap:6px;padding:5px 0;border-bottom:1px solid var(--bd);">';
+        h += '<div class="cb"></div>';
+        h += '<select style="font-size:.65rem;border:none;background:transparent;color:var(--tx3);"><option>High</option><option>Med</option><option>Low</option></select>';
+        h += '<input class="wi" placeholder="task...">';
+        h += '</div>';
+      }
+      h += '</div>';
+      h += '<div><div class="lbl">Completed</div>';
+      for (var i = 0; i < 8; i++) h += '<div class="cr"><div class="cb ck"></div><input class="wi" style="text-decoration:line-through;color:var(--tx3);" placeholder="done task..."></div>';
+      h += '<div style="margin-top:.8rem;"><div class="lbl">Notes</div>';
+      for (var i = 0; i < 5; i++) h += row('');
+      h += '</div></div></div>';
+      return h;
+    }
+    // Generic fallback
+    var h = '<div class="lbl">' + t.name + '</div>';
+    h += '<div class="g2">';
+    for (var col = 0; col < 2; col++) {
+      h += '<div>';
+      for (var i = 0; i < 10; i++) h += row(i === 0 ? t.desc : '');
+      h += '</div>';
+    }
+    h += '</div>';
+    h += '<div style="margin-top:.8rem;"><div class="lbl">Notes</div>';
+    for (var i = 0; i < 5; i++) h += row('');
+    h += '</div>';
+    return h;
+  }
+
+  // ===== INIT =====
+  window.addEventListener('load', function() {
+    // Nav tabs
+    document.getElementById('navtabs').addEventListener('click', function(e) {
+      var b = e.target.closest('.nt');
+      if (!b) return;
+      goPage(b.getAttribute('data-p'));
+    });
+
+    // Dark mode
+    var isDark = false;
+    el('dmBtn').addEventListener('click', function() {
+      isDark = !isDark;
+      document.body.classList.toggle('dark', isDark);
+      this.textContent = isDark ? '☀️' : '🌙';
+      this.title = isDark ? 'Light Mode' : 'Dark Mode';
+    });
+
+    // Theme dots
+    document.querySelectorAll('.tdot').forEach(function(d) {
+      d.addEventListener('click', function() {
+        document.querySelectorAll('.tdot').forEach(function(x) { x.classList.remove('on'); });
+        d.classList.add('on');
+        var themes = ['tr','ts','tk','tv','tpe'];
+        document.body.className = themes.indexOf(d.getAttribute('data-t')) >= 0 ? d.getAttribute('data-t') : '';
+      });
+    });
+
+    // Template filter tabs
+    document.getElementById('tFilt').addEventListener('click', function(e) {
+      var b = e.target.closest('.stab');
+      if (!b) return;
+      document.querySelectorAll('#tFilt .stab').forEach(function(s) { s.classList.remove('on'); });
+      b.classList.add('on');
+      tplFilter = b.getAttribute('data-f');
+      buildTpls();
+    });
+
+    // Sticker filter tabs
+    document.getElementById('sFilt').addEventListener('click', function(e) {
+      var b = e.target.closest('.stab');
+      if (!b) return;
+      document.querySelectorAll('#sFilt .stab').forEach(function(s) { s.classList.remove('on'); });
+      b.classList.add('on');
+      stkFilter = b.getAttribute('data-f');
+      buildStk();
+    });
+
+    // Checkboxes (static)
+    document.querySelectorAll('.cb').forEach(function(cb) {
+      cb.addEventListener('click', function() { toggleCb(this); });
+    });
+
+    // Stars (static)
+    document.querySelectorAll('.starG').forEach(function(sg) {
+      sg.addEventListener('click', function(e) {
+        if (e.target.classList.contains('star')) {
+          var stars = sg.querySelectorAll('.star');
+          var idx = Array.from(stars).indexOf(e.target);
+          stars.forEach(function(s, i) { s.classList.toggle('lit', i <= idx); });
+        }
+      });
+    });
+
+    // Affirmation
+    el('afmBox').addEventListener('click', newAfm);
+    el('revAfm').addEventListener('click', newAfm);
+
+    // Add todo
+    el('addTodoBtn').addEventListener('click', addTodo);
+    el('addHabBtn').addEventListener('click', addHabit);
+
+    // Monthly view tabs
+    el('mvCal').addEventListener('click', function() { mvw('cal'); });
+    el('mvBud').addEventListener('click', function() { mvw('bud'); });
+    el('mvRev').addEventListener('click', function() { mvw('rev'); });
+
+    // Week nav
+    el('wkPrev').addEventListener('click', function() { wOff--; buildWeek(); });
+    el('wkNext').addEventListener('click', function() { wOff++; buildWeek(); });
+
+    // Month nav
+    el('mnPrev').addEventListener('click', function() { curM--; if (curM < 0) { curM = 11; curY--; } buildCal(); });
+    el('mnNext').addEventListener('click', function() { curM++; if (curM > 11) { curM = 0; curY++; } buildCal(); });
+
+    // Date input
+    var now = new Date();
+    el('dDate').value = now.toISOString().split('T')[0];
+    updDailyDate(now);
+    el('dDate').addEventListener('change', function() {
+      var d = new Date(this.value + 'T12:00:00');
+      updDailyDate(d);
+    });
+
+    // Index links - use event delegation
+    document.getElementById('pg-index').addEventListener('click', function(e) {
+      var b = e.target.closest('.il');
+      if (!b) return;
+      var id = b.id;
+      if (!id) return;
+      if (id.indexOf('idx-') === 0) {
+        var key = id.replace('idx-', '').replace(/\d+$/, '');
+        var pages = ['daily','weekly','monthly','notes','templates','stickers','index'];
+        if (pages.indexOf(key) >= 0) { goPage(key); }
+        else {
+          var tplIds = ['meal','water','workout','sleep','mood','supplements','symptoms','steps','todo','time','goals','matrix','appointments','meeting','pomodoro','project','habits30','budget','savings','bills','debt','invest','subs','fingoals','books','movies','cleaning','trip','wishlist','birthdays','orders','passwords','packing','gratitude','vision','letter','dream','affirmations','bucket','quotes','finance'];
+          if (tplIds.indexOf(key) >= 0) { goPage('templates'); openTpl(key); }
+        }
+      }
+    });
+
+    // Habit cells in modal (event delegation)
+    el('mBody').addEventListener('click', function(e) {
+      if (e.target.classList.contains('habitCell')) {
+        if (e.target.textContent === '') {
+          e.target.textContent = 'v';
+          e.target.style.background = 'var(--acc)';
+          e.target.style.color = '#fff';
+          e.target.style.fontWeight = '600';
+          e.target.style.fontSize = '.65rem';
+        } else {
+          e.target.textContent = '';
+          e.target.style.background = '';
+        }
+      }
+      if (e.target.classList.contains('moodDay') || e.target.closest('.moodDay')) {
+        var cell = e.target.classList.contains('moodDay') ? e.target : e.target.closest('.moodDay');
+        var circ = cell.querySelector('.moodCircle');
+        if (!circ) return;
+        var moodColors = ['var(--sur2)','#a8b8d0','#c8d8a8','#c8c8c8','#f0d080','#a8d0a8','#c4a0a0'];
+        var cur = parseInt(cell.getAttribute('data-mi') || '0');
+        cur = (cur + 1) % moodColors.length;
+        cell.setAttribute('data-mi', cur);
+        circ.style.background = moodColors[cur];
+      }
+    });
+
+    mkSpiral('sp1', 18);
+    mkSpiral('sp2', 16);
+    mkSpiral('sp3', 16);
+    buildSched();
+    buildTodos();
+    buildHabList();
+    buildWater();
+    buildMood();
+    buildWeek();
+    buildCal();
+    buildNoteTypes();
+    buildNoteLines('lined');
+    buildTpls();
+    buildStk();
+    buildWeekHabs();
+  });
+
+  // ===== DAILY =====
+  function updDailyDate(d) {
+    el('dDisp').textContent = d.toLocaleDateString('en-US', {month:'long', day:'numeric', year:'numeric'});
+    el('dSub').textContent = d.toLocaleDateString('en-US', {weekday:'long'}).toUpperCase() + ' - DAILY PLANNER';
+  }
+  function buildSched() {
+    var c = el('sched'); if (!c) return; c.innerHTML = '';
+    var hrs = ['5','6','7','8','9','10','11','12','1','2','3','4','5','6','7','8'];
+    for (var i = 0; i < hrs.length; i++) {
+      var d = document.createElement('div'); d.className = 'wl tm';
+      d.innerHTML = '<span class="tt">' + hrs[i] + '</span><input class="wi" placeholder="">';
+      c.appendChild(d);
+    }
+  }
+  function buildTodos() {
+    var l = el('tdList'); if (!l) return; l.innerHTML = '';
+    for (var i = 0; i < 5; i++) {
+      var r = document.createElement('div'); r.className = 'cr';
+      var cb = document.createElement('div'); cb.className = 'cb';
+      cb.addEventListener('click', function() { toggleCb(this); });
+      var inp = document.createElement('input'); inp.className = 'wi'; inp.placeholder = 'task...';
+      r.appendChild(cb); r.appendChild(inp); l.appendChild(r);
+    }
+  }
+  function addTodo() {
+    var l = el('tdList');
+    var r = document.createElement('div'); r.className = 'cr';
+    var cb = document.createElement('div'); cb.className = 'cb';
+    cb.addEventListener('click', function() { toggleCb(this); });
+    var inp = document.createElement('input'); inp.className = 'wi'; inp.placeholder = 'new task...';
+    r.appendChild(cb); r.appendChild(inp); l.appendChild(r); inp.focus();
+  }
+  function buildHabList() {
+    var l = el('habList'); if (!l) return; l.innerHTML = '';
+    for (var i = 0; i < habits.length; i++) {
+      var r = document.createElement('div'); r.className = 'hb-row';
+      var nm = document.createElement('div'); nm.className = 'hb-nm'; nm.textContent = habits[i];
+      var bxs = document.createElement('div'); bxs.style.display = 'flex'; bxs.style.gap = '3px';
+      for (var j = 0; j < 5; j++) {
+        var b = document.createElement('div'); b.className = 'hb-bx';
+        b.addEventListener('click', function() { this.classList.toggle('dn'); });
+        bxs.appendChild(b);
+      }
+      r.appendChild(nm); r.appendChild(bxs); l.appendChild(r);
+    }
+  }
+  function addHabit() {
+    var n = prompt('Habit name:');
+    if (n) { habits.push(n); buildHabList(); buildWeekHabs(); toast('Habit added!'); }
+  }
+  function buildWater() {
+    var c = el('wDots'); if (!c) return; c.innerHTML = '';
+    for (var i = 0; i < 8; i++) {
+      (function(idx) {
+        var d = document.createElement('div'); d.className = 'wd';
+        d.addEventListener('click', function() {
+          wCnt = wCnt === idx + 1 ? idx : idx + 1;
+          document.querySelectorAll('.wd').forEach(function(x, j) { x.classList.toggle('fl', j < wCnt); });
+          el('wCnt').textContent = wCnt + ' / 8 glasses';
+        });
+        c.appendChild(d);
+      })(i);
+    }
+  }
+  function buildMood() {
+    var r = el('moodR'); if (!r) return;
+    var emojis = ['😔','😐','🙂','😊','😄'];
+    for (var i = 0; i < emojis.length; i++) {
+      (function(m) {
+        var b = document.createElement('div'); b.className = 'mb'; b.textContent = m;
+        b.addEventListener('click', function() {
+          document.querySelectorAll('.mb').forEach(function(x) { x.classList.remove('on'); });
+          this.classList.add('on');
+          toast('Mood: ' + m);
+        });
+        r.appendChild(b);
+      })(emojis[i]);
+    }
+  }
+  function newAfm() {
+    var a = afms[Math.floor(Math.random() * afms.length)];
+    document.querySelectorAll('.afm').forEach(function(e) { e.textContent = a; });
+  }
+
+  // ===== WEEKLY =====
+  function buildWeek() {
+    var g = el('wGrid'); if (!g) return; g.innerHTML = '';
+    var now = new Date(), sw = new Date(now);
+    sw.setDate(sw.getDate() - sw.getDay() + wOff * 7);
+    var days = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+    var th = document.createElement('div'); th.className = 'wgh'; th.style.background = 'var(--sur2)'; g.appendChild(th);
+    for (var i = 0; i < days.length; i++) {
+      (function(idx) {
+        var dt = new Date(sw); dt.setDate(dt.getDate() + idx);
+        var h = document.createElement('div'); h.className = 'wgh';
+        var today = dt.toDateString() === new Date().toDateString();
+        if (today) h.style.background = 'var(--tl)';
+        h.innerHTML = '<div style="font-size:.62rem;font-weight:600;color:var(--td);text-transform:uppercase;">' + days[idx] + '</div><div style="font-size:.88rem;color:' + (today ? 'var(--acc2)' : 'var(--tx)') + ';">' + dt.getDate() + '</div>';
+        g.appendChild(h);
+      })(i);
+    }
+    var hrs = ['6AM','7AM','8AM','9AM','10AM','11AM','12PM','1PM','2PM','3PM','4PM','5PM','6PM','7PM','8PM'];
+    for (var h = 0; h < hrs.length; h++) {
+      var t = document.createElement('div'); t.className = 'wgt'; t.textContent = hrs[h]; g.appendChild(t);
+      for (var d = 0; d < 7; d++) {
+        var c = document.createElement('div'); c.className = 'wgc'; c.contentEditable = true; g.appendChild(c);
+      }
+    }
+    g.style.gridTemplateColumns = '46px repeat(7,1fr)';
+    var sw2 = new Date(sw), ew = new Date(sw); ew.setDate(ew.getDate() + 6);
+    var lbl = el('wkLbl');
+    if (lbl) lbl.textContent = sw2.toLocaleDateString('en-US',{month:'short',day:'numeric'}) + ' - ' + ew.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});
+  }
+  function buildWeekHabs() {
+    var l = el('wHabs'); if (!l) return; l.innerHTML = '';
+    for (var i = 0; i < Math.min(4, habits.length); i++) {
+      var r = document.createElement('div'); r.className = 'hb-row';
+      var nm = document.createElement('div'); nm.className = 'hb-nm'; nm.textContent = habits[i];
+      var bxs = document.createElement('div'); bxs.style.display = 'flex'; bxs.style.gap = '2px';
+      for (var j = 0; j < 7; j++) {
+        var b = document.createElement('div'); b.className = 'hb-bx'; b.style.width = '13px'; b.style.height = '13px';
+        b.addEventListener('click', function() { this.classList.toggle('dn'); });
+        bxs.appendChild(b);
+      }
+      r.appendChild(nm); r.appendChild(bxs); l.appendChild(r);
+    }
+  }
+
+  // ===== MONTHLY =====
+  function buildCal() {
+    var g = el('calGrid'); if (!g) return; g.innerHTML = '';
+    var dnames = ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
+    for (var i = 0; i < dnames.length; i++) {
+      var h = document.createElement('div'); h.className = 'cdh'; h.textContent = dnames[i]; g.appendChild(h);
+    }
+    var first = new Date(curY, curM, 1), last = new Date(curY, curM + 1, 0);
+    var off = first.getDay() === 0 ? 6 : first.getDay() - 1;
+    var today = new Date();
+    for (var i = 0; i < off; i++) {
+      var prev = new Date(curY, curM, 1 - off + i);
+      var d = document.createElement('div'); d.className = 'cd oth';
+      d.innerHTML = '<div class="cdn">' + prev.getDate() + '</div>'; g.appendChild(d);
+    }
+    for (var n = 1; n <= last.getDate(); n++) {
+      (function(date) {
+        var d = document.createElement('div'); d.className = 'cd';
+        var isT = (date === today.getDate() && curM === today.getMonth() && curY === today.getFullYear());
+        if (isT) d.classList.add('tod');
+        d.innerHTML = '<div class="cdn">' + date + '</div>';
+        d.addEventListener('click', function() { toast('Day ' + date + ' selected'); });
+        g.appendChild(d);
+      })(n);
+    }
+    el('mTitle').textContent = MNS[curM] + ' ' + curY;
+    el('mLbl').textContent = MNS[curM] + ' ' + curY;
+  }
+  function mvw(v) {
+    document.querySelectorAll('#pg-monthly .stab').forEach(function(s) { s.classList.remove('on'); });
+    el('mv' + v.charAt(0).toUpperCase() + v.slice(1)).classList.add('on');
+    el('vCal').style.display = v === 'cal' ? 'block' : 'none';
+    el('vBud').style.display = v === 'bud' ? 'block' : 'none';
+    el('vRev').style.display = v === 'rev' ? 'block' : 'none';
+  }
+
+  // ===== NOTES =====
+  var noteTs = [
+    {id:'lined',lbl:'Lined',ico:'&#8801;'},{id:'dotgrid',lbl:'Dot Grid',ico:'&#8759;'},{id:'graph',lbl:'Graph',ico:'#'},
+    {id:'blank',lbl:'Blank',ico:'&#9633;'},{id:'cornell',lbl:'Cornell',ico:'&#8862;'},{id:'wide',lbl:'Wide',ico:'&#9552;'},
+    {id:'narrow',lbl:'Narrow',ico:'&#8801;'},{id:'margin',lbl:'Margin',ico:'&#8214;'},{id:'checklist',lbl:'Checklist',ico:'&#9745;'},{id:'boxgrid',lbl:'Box Grid',ico:'&#9638;'}
+  ];
+  function buildNoteTypes() {
+    var g = el('nTypes'); if (!g) return; g.innerHTML = '';
+    for (var i = 0; i < noteTs.length; i++) {
+      (function(nt) {
+        var b = document.createElement('div');
+        b.style.cssText = 'border:1px solid var(--bd);border-radius:6px;padding:7px 4px;text-align:center;cursor:pointer;background:var(--sur);transition:all .2s;';
+        b.innerHTML = '<div style="font-size:18px;color:var(--acc2);">' + nt.ico + '</div><div style="font-size:.6rem;color:var(--tx2);margin-top:2px;">' + nt.lbl + '</div>';
+        b.addEventListener('click', function() {
+          document.querySelectorAll('#nTypes div').forEach(function(x) { x.style.borderColor = 'var(--bd)'; x.style.background = 'var(--sur)'; });
+          b.style.borderColor = 'var(--acc)'; b.style.background = 'var(--tl)';
+          el('nTypeLbl').textContent = nt.lbl;
+          buildNoteLines(nt.id);
+        });
+        g.appendChild(b);
+      })(noteTs[i]);
+    }
+  }
+  function buildNoteLines(type) {
+    var c = el('nLines'); if (!c) return; c.innerHTML = '';
+    if (type === 'blank') { c.style.minHeight = '360px'; c.style.border = '1px solid var(--bd)'; c.contentEditable = true; return; }
+    c.style.border = ''; c.style.minHeight = ''; c.contentEditable = false;
+    if (type === 'dotgrid') {
+      var dg = document.createElement('div'); dg.style.cssText = 'display:grid;grid-template-columns:repeat(28,1fr);gap:9px;padding:8px 0;';
+      for (var i = 0; i < 280; i++) { var pt = document.createElement('div'); pt.style.cssText = 'width:3px;height:3px;border-radius:50%;background:var(--bd2);margin:auto;'; dg.appendChild(pt); }
+      c.appendChild(dg); return;
+    }
+    if (type === 'graph') { var gr = document.createElement('div'); gr.style.cssText = 'background-image:linear-gradient(to right,var(--bd) 1px,transparent 1px),linear-gradient(to bottom,var(--bd) 1px,transparent 1px);background-size:20px 20px;min-height:360px;'; c.appendChild(gr); return; }
+    if (type === 'cornell') {
+      var cw = document.createElement('div'); cw.style.cssText = 'display:grid;grid-template-columns:110px 1fr;min-height:360px;';
+      cw.innerHTML = '<div style="border-right:2px solid var(--acc);padding:6px;font-size:.65rem;color:var(--tx3);">Cues</div><div style="padding:6px;font-size:.65rem;color:var(--tx3);">Notes</div><div style="border-right:2px solid var(--acc);padding:6px;"></div><div style="padding:6px;"></div><div style="grid-column:1/-1;border-top:2px solid var(--acc);padding:8px;background:var(--sur2);font-size:.65rem;color:var(--tx3);">Summary</div>';
+      c.appendChild(cw); return;
+    }
+    if (type === 'checklist') {
+      for (var i = 0; i < 16; i++) {
+        var r = document.createElement('div'); r.className = 'cr';
+        var cb = document.createElement('div'); cb.className = 'cb'; cb.addEventListener('click', function() { toggleCb(this); });
+        var inp = document.createElement('input'); inp.className = 'wi'; inp.placeholder = '';
+        r.appendChild(cb); r.appendChild(inp); c.appendChild(r);
+      }
+      return;
+    }
+    if (type === 'boxgrid') {
+      var bg = document.createElement('div'); bg.style.cssText = 'display:grid;grid-template-columns:repeat(4,1fr);gap:6px;';
+      for (var i = 0; i < 8; i++) { var bx = document.createElement('div'); bx.style.cssText = 'border:1px solid var(--bd);border-radius:4px;min-height:65px;padding:5px;'; bg.appendChild(bx); }
+      c.appendChild(bg); return;
+    }
+    var cnt = type === 'narrow' ? 22 : type === 'wide' ? 12 : 18;
+    for (var i = 0; i < cnt; i++) {
+      var ln = document.createElement('div'); ln.className = 'wl';
+      if (type === 'margin') { ln.style.cssText = 'display:grid;grid-template-columns:55px 1fr;'; ln.innerHTML = '<div style="border-right:1.5px solid var(--acc);padding:0 4px;"><input class="wi" style="font-size:.72rem;" placeholder=""></div><input class="wi" placeholder="">'; }
+      else { ln.innerHTML = '<input class="wi" placeholder="">'; }
+      c.appendChild(ln);
+    }
+  }
+
+  // ===== TEMPLATES =====
+  function buildTpls() {
+    var g = el('tGrid'); if (!g) return; g.innerHTML = '';
+    for (var i = 0; i < TPLS.length; i++) {
+      (function(t) {
+        if (tplFilter !== 'all' && t.cat !== tplFilter) return;
+        var c = document.createElement('div'); c.className = 'tc';
+        c.innerHTML = '<div style="font-size:1.5rem;margin-bottom:5px;">' + t.ico + '</div><div style="font-size:.78rem;font-weight:500;color:var(--tx);margin-bottom:2px;">' + t.name + '</div><div style="font-size:.66rem;color:var(--tx3);margin-bottom:7px;">' + t.desc + '</div><div style="font-size:.68rem;color:var(--acc2);font-weight:500;">Open template</div>';
+        c.addEventListener('click', function() { openTpl(t.id); });
+        g.appendChild(c);
+      })(TPLS[i]);
+    }
+  }
+
+  // ===== STICKERS =====
+  function buildStk() {
+    var g = el('sGrid'); if (!g) return; g.innerHTML = '';
+    var arr;
+    if (stkFilter === 'all') {
+      arr = [].concat(stkData.nature, stkData.lifestyle, stkData.food, stkData.mood, stkData.icons);
+    } else {
+      arr = stkData[stkFilter] || [];
+    }
+    for (var i = 0; i < arr.length; i++) {
+      (function(s) {
+        var e = document.createElement('div'); e.className = 'stk'; e.textContent = s; e.title = 'Click to copy';
+        e.addEventListener('click', function() {
+          if (navigator.clipboard) {
+            navigator.clipboard.writeText(s).then(function() { toast('Copied: ' + s); }).catch(function() { toast(s + ' - tap to copy'); });
+          } else {
+            toast(s + ' copied!');
+          }
+        });
+        g.appendChild(e);
+      })(arr[i]);
+    }
+  }
+
+})();
+</script>
+</body>
+</html>
